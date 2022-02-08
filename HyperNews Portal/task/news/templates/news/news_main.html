@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+<head>
+    <meta charset="UTF-8">
+    <title>Main News Page</title>
+</head>
+<body>
+<h2>Hyper news</h2>
+<form action="/news/" method="get">
+    <input name="q">
+    <button type="submit">Search</button>
+</form>
+{% for date, newslets in news_links.items %}
+    <h4>{{ date }}</h4>
+    <ul>
+        {% for newslet in newslets %}
+            <li><a target="_blank" href="/news/{{ newslet.link }}/">{{ newslet.title }}</a></li>
+        {% endfor %}
+    </ul>
+{% endfor %}
+<a target="_blank" href="/news/create/">Create your news</a>
+</body>
+</html>
